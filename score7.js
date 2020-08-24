@@ -29,6 +29,9 @@
 				shl = [instr.parsed.opd[1], "<<", "0x10"].join(" ");
 				return Base.assign(instr.parsed.opd[0], shl);
 			},
+			"ldiu!": function(instr, context, instructions) {
+				return Base.assign(instr.parsed.opd[0], instr.parsed.opd[1]);
+			},
 			ori: function(instr, context, instructions) {
 				return Base.or(instr.parsed.opd[0], instr.parsed.opd[0], instr.parsed.opd[1]);
 			},
@@ -57,7 +60,6 @@
 			},
 			"swp!": function(instr, context, instructions) {
 				loc = [_score7_registers[2], "+", "(", instr.parsed.opd[1], "<<", 2, ")"].join(" ");
-				//loc = "69"
 				return Base.write_memory(loc, instr.parsed.opd[0], 32, true);
 			},
             invalid: function(instr, context, instructions) {
